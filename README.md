@@ -31,3 +31,23 @@ npm test
 
 Migration Supabase berada di `supabase/migrations`. Jalankan migration dan
 seed melalui Supabase CLI atau SQL Editor sebelum menguji endpoint data.
+
+## Deployment Vercel
+
+Project ini menyediakan entrypoint serverless di `api/index.ts`. Hubungkan
+repository GitHub ke Vercel dengan root directory repository ini dan gunakan
+build command `npm run build`. Vercel akan mendeteksi fungsi Node pada folder
+`api/`; start command tidak diperlukan.
+
+Set environment variables berikut di Vercel:
+
+```text
+NODE_ENV=production
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-supabase-anon-key
+CORS_ORIGINS=*
+```
+
+Setelah deploy, endpoint tersedia pada
+`https://<project>.vercel.app/api/v1/health`. Jangan upload `.env` atau
+`SUPABASE_SERVICE_ROLE_KEY`.
